@@ -1,0 +1,1 @@
+web: gunicorn magicalinvestment.wsgi
