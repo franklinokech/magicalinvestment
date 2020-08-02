@@ -139,5 +139,11 @@ STATICFILES_DIRS = [
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'franklinokech@gmail.com'
+EMAIL_HOST_PASSWORD = 'yhreorpffkcmayud'
+EMAIL_PORT = 587
+
 # Activate Django-Heroku.
 django_heroku.settings(locals())

@@ -32,13 +32,17 @@ def contact(request):
         subject = request.POST['subject']
         message = request.POST['message']
 
+        context = {
+            'name': name
+        }
+
         # Send email with posted data
         if subject and message and email:
             try:
                 send_mail(subject, message, email, ['franklinokech@gmail.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
-            return HttpResponseRedirect('/homepage/contact_thank_you.html')
+            return render(request, 'homepage/contact_thank_you.html', context)
         else:
             # In reality we'd use a form class
             # to get proper validation errors.
