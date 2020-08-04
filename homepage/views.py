@@ -47,3 +47,26 @@ def contact(request):
             # In reality we'd use a form class
             # to get proper validation errors.
             return HttpResponse('Make sure all fields are entered and valid.')
+
+
+def newsletter(request):
+    my_email = request.POST['email']
+    subject = 'new subscriber'
+    message = 'We have a new subscriber'
+
+    context = {
+        'email': my_email
+    }
+
+    # Send email with posted data
+    if my_email:
+        try:
+            send_mail(subject, message, my_email, ['franklinokech@gmail.com'])
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+        return render(request, 'homepage/thank_subscriber.html', context)
+    else:
+        # In reality we'd use a form class
+        # to get proper validation errors.
+        return HttpResponse('Make sure all fields are entered and valid.')
+    return render(request, 'homepage/newsletter.html', {})
